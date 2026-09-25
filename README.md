@@ -1,4 +1,4 @@
-# Biologically-Inspired-Visual-Image-Decoding
+# MCSCA: Multi-Color-Space Complementary Alignment for Visual neural decoding
 
 ## Environment Setup
 - Python 3.8.19
