@@ -1,4 +1,4 @@
-# MCSCA: Multi-Color-Space Complementary Alignment for Visual neural decoding
+# MuCCA: Multilevel Human Color Representation–guided Complementary Alignment for Neural Visual Decoding
 
 ## Environment Setup
 - Python 3.8.19
