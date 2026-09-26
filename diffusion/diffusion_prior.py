@@ -311,11 +311,11 @@ class Pipe:
 
         for epoch in range(num_epochs):
             if early_stopping_step == early_stop_patience:
-                print(f"已经有 {early_stopping_step} 次没有提升，终止训练！")
+                print(f" {early_stopping_step} ,stop!")
                 break
 
             self.diffusion_prior.train()
-            eeg_model.eval()  # 设定成eval
+            eeg_model.eval() 
             eval_loss_sum = 0
             loss_sum = 0
             sim = 0
@@ -339,7 +339,7 @@ class Pipe:
                     c_embeds = None
 
                 # 2. Generate noisy embeddings as input
-                noise = torch.randn_like(h_embeds)  # 其是服从正态分布的
+                noise = torch.randn_like(h_embeds) 
 
                 # 3. sample timestep
                 timesteps = torch.randint(0, num_train_timesteps, (N,), device=device)
@@ -369,7 +369,6 @@ class Pipe:
 
             # lr_scheduler.step(loss)
 
-            # 添加评估代码
             self.diffusion_prior.eval()
             with torch.no_grad():
                 for x, label, text, text_features, img, img_features, depth_features, aug_img_features, img_index, index \
@@ -381,7 +380,6 @@ class Pipe:
                     h_embeds = selected_features.type(torch.float32).to(device)
                     N = h_embeds.shape[0]
 
-                    # 评估余弦相似度
                     output_embedding = self.generate(c_embeds=c_embeds,
                                                      num_inference_steps=50,
                                                      guidance_scale=5.0)
